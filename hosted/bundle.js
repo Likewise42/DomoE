@@ -1,5 +1,137 @@
 "use strict";
 
+var dogoRenderer = void 0;
+var dogoForm = void 0;
+var DogoFormClass = void 0;
+var DogoListClass = void 0;
+
+var handleDogo = function handleDogo(e) {
+  e.preventDefault();
+
+  $("dogoMessage").animate({ width: 'hide' }, 350);
+
+  if ($("dogoName").val() == '' || $("dogoAge").val() == '' || $("dogoPower").val() == '') {
+    handleError("Bork! all fields required");
+    return false;
+  }
+
+  sendAjax('POST', $("#dogoForm").attr("action"), $("#dogoForm").serialize(), function () {
+    dogoRenderer.loadDogosFromServer();
+  });
+
+  return false;
+};
+
+var renderDogo = function renderDogo() {
+  return React.createElement(
+    "form",
+    { id: "dogoForm",
+      name: "dogoForm",
+      onSubmit: this.handleSubmit,
+      action: "/dogoMaker",
+      method: "POST",
+      className: "dogoForm"
+    },
+    React.createElement(
+      "label",
+      { htmlFor: "name" },
+      "Name: "
+    ),
+    React.createElement("input", { id: "dogoName", type: "text", name: "name", placeholder: "Dogo Name" }),
+    React.createElement(
+      "label",
+      { htmlFor: "age" },
+      " Age: "
+    ),
+    React.createElement("input", { id: "dogoAge", type: "text", name: "age", placeholder: "Dogo Age" }),
+    React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
+    React.createElement("input", { className: " makeDogoSubmit", type: "submit", value: "Make Dogo" })
+  );
+};
+
+var renderDogoList = function renderDogoList() {
+  if (this.state.data.length === 0) {
+    return React.createElement(
+      "div",
+      { className: "dogoList" },
+      React.createElement(
+        "h3",
+        { className: "emptyDogo" },
+        "No Dogos Yet"
+      )
+    );
+  }
+
+  var dogoNodes = this.state.data.map(function (dogo) {
+    return React.createElement(
+      "div",
+      { key: dogo._id, className: "dogo" },
+      React.createElement("img", { src: "/assets/img/dogoface.jpeg", alt: "dogo face", className: "dogoFace" }),
+      React.createElement(
+        "h3",
+        { className: "dogoName" },
+        " Name: ",
+        dogo.name,
+        " "
+      ),
+      React.createElement(
+        "h3",
+        { className: "dogoAge" },
+        " Age: ",
+        dogo.age,
+        " "
+      )
+    );
+  });
+
+  return React.createElement(
+    "div",
+    { className: "dogoList" },
+    dogoNodes
+  );
+};
+
+var setup = function setup(csrf) {
+  DogoFormClass = React.createClass({
+    displayName: "DogoFormClass",
+
+    handleSubmit: handleDogo,
+    render: renderDogo
+  });
+
+  DogoListClass = React.createClass({
+    displayName: "DogoListClass",
+
+    loadDogosFromServer: function loadDogosFromServer() {
+      sendAjax('GET', '/getDogos', null, function (data) {
+        this.setState({ data: data.dogos });
+      }.bind(this));
+    },
+    getInitialState: function getInitialState() {
+      return { data: [] };
+    },
+    componentDidMount: function componentDidMount() {
+      this.loadDogosFromServer();
+    },
+    render: renderDogoList
+  });
+
+  dogoForm = ReactDOM.render(React.createElement(DogoFormClass, { csrf: csrf }), document.querySelector("#makeDogo"));
+
+  dogoRenderer = ReactDOM.render(React.createElement(DogoListClass, null), document.querySelector("#dogos"));
+};
+
+var getToken = function getToken() {
+  sendAjax('GET', '/getToken', null, function (result) {
+    setup(result.csrfToken);
+  });
+};
+
+$(document).ready(function () {
+  getToken();
+});
+"use strict";
+
 var domoRenderer = void 0;
 var domoForm = void 0;
 var DomoFormClass = void 0;

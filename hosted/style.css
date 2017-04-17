@@ -58,6 +58,17 @@ nav:nth-child(1) {
   border-top-right-radius: 4px;
 }
 
+.dogoForm {
+  border: 2px solid #338acc;
+  height: 35px;
+  width: 900px;
+  margin-top:0px;
+  padding-top:10px;
+  background-color: #55acee;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
 .domoForm label {
   display: inline-block;
   width: 75px;
@@ -67,7 +78,20 @@ nav:nth-child(1) {
   color: white;
 }
 
+.dogoForm label {
+  display: inline-block;
+  width: 75px;
+  margin-left: 10px;
+  font-size: 1.2em;
+  float: left;
+  color: white;
+}
+
 .domoForm input[type=text] {
+  float:left;
+}
+
+.dogoForm input[type=text] {
   float:left;
 }
 
@@ -81,11 +105,30 @@ nav:nth-child(1) {
   text-decoration: none;
 }
 
+.makeDogoSubmit {
+  transition: background-color 0.4s ease;
+  display: inline;
+  width: 90px;
+  background-color: #55acee;
+  border-radius: 2px;
+  color: white;
+  text-decoration: none;
+}
+
 .makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
   color: white;
 }
 
+.makeDogoSubmit:link, .makeDogoSubmit:visited, .makeDogoSubmit:hover, .makeDogoSubmit:active {
+  color: white;
+}
+
 .makeDomoSubmit:hover {
+  transition: background-color 0.4s ease;
+  background-color: #338acc;
+}
+
+.makeDogoSubmit:hover {
   transition: background-color 0.4s ease;
   background-color: #338acc;
 }
@@ -158,7 +201,25 @@ nav:nth-child(1) {
   overflow: hidden;
 }
 
+#dogoMessage {
+  display:none;
+  top: 250px;
+  width: 250px;
+  height: 650px;
+  position: absolute;
+  z-index: 200;
+  right: 0px;
+  overflow: hidden;
+}
+
 #domoMessage h3 {
+  width: 200px;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+}
+
+#dogoMessage h3 {
   width: 200px;
   position: absolute;
   top: 0px;
@@ -189,7 +250,27 @@ nav:nth-child(1) {
   transform: rotate(330deg);
 }
 
+#dogo {
+  z-index: 225;
+  margin-top: -20px;
+  margin-left: 135px;
+  height: 450px;
+  width: 300px;
+  -ms-transform: rotate(330deg);
+  -webkit-transform: rotate(330deg); 
+  transform: rotate(330deg);
+}
+
 #domos {
+  width: 40%;
+  min-width: 400px;
+  border: 2px solid #55acee;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+#dogos {
   width: 40%;
   min-width: 400px;
   border: 2px solid #55acee;
@@ -211,6 +292,19 @@ nav:nth-child(1) {
   overflow: hidden;
 }
 
+.dogo {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border: 2px solid #55acee;
+  border-radius: 4px;
+  background-color: #55acee;
+  padding: 10px;
+  min-height:60px;
+  overflow: hidden;
+}
+
 .domo:hover {
   transition: border-color 0.2s ease-out;
   border-color: rgba(255,255,255, 0.8);
@@ -218,7 +312,24 @@ nav:nth-child(1) {
   background-color: #66bfff;
 }
 
+.dogo:hover {
+  transition: border-color 0.2s ease-out;
+  border-color: rgba(255,255,255, 0.8);
+  transition: background-color 2.6s ease-out;
+  background-color: #66bfff;
+}
+
 img.domoFace {
+  margin-left: 25px;
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+  margin-top:10px;
+  float:left;
+}
+
+img.dogoFace {
   margin-left: 25px;
   margin-right: 10px;
   height: 50px;
@@ -236,7 +347,23 @@ h3.emptyDomo {
   margin-top: 18px;
 }
 
+h3.emptyDogo {
+  width: 400px;
+  font-size: 1.5em;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 18px;
+}
+
 h3.domoName {
+  float:left;
+  width: 200px;
+  font-weight: bold;
+  padding-left: 65px;
+  font-size: 1.5em;
+}
+
+h3.dogoName {
   float:left;
   width: 200px;
   font-weight: bold;
@@ -253,10 +380,27 @@ h3.domoAge {
   font-size: 1.5em;
 }
 
+h3.dogoAge {
+  float:right;
+  text-align: left;
+  width: 100px;
+  font-weight: bold;
+  padding-right: 40px;
+  font-size: 1.5em;
+}
+
 .domo:first-child {
   margin-top: 10px;
 }
 
+.dogo:first-child {
+  margin-top: 10px;
+}
+
 .domo:last-child {
+  margin-bottom:10px;
+}
+
+.dogo:last-child {
   margin-bottom:10px;
 }
