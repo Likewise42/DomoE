@@ -13,13 +13,13 @@ const makerPage = (req, res) => {
 };
 
 const makeDogo = (req, res) => {
-  if (!req.body.name || !req.body.age) {
-    return res.status(400).json({ error: 'Bork! Name and age are required' });
+  if (!req.body.name || !req.body.breed) {
+    return res.status(400).json({ error: 'Bork! Name and breed are required' });
   }
 
   const dogoData = {
     name: req.body.name,
-    age: req.body.age,
+    breed: req.body.breed,
     owner: req.session.account._id,
   };
 

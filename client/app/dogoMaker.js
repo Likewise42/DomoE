@@ -8,7 +8,7 @@ const handleDogo = (e) =>{
 
   $("dogoMessage").animate({width:'hide'},350);
 
-  if($("dogoName").val() == '' || $("dogoAge").val() == '' || $("dogoPower").val() == ''){
+  if($("dogoName").val() == '' || $("dogoBreed").val() == ''){
     handleError("Bork! all fields required");
     return false;
   }
@@ -29,11 +29,12 @@ const renderDogo = function() {
       method="POST"
       className="dogoForm"
       >
+      
 
       <label htmlFor="name">Name: </label>
       <input id="dogoName" type="text" name="name" placeholder ="Dogo Name"/>
-      <label htmlFor="age"> Age: </label>
-      <input id="dogoAge" type="text" name="age" placeholder="Dogo Age"/>
+      <label htmlFor="breed"> Breed: </label>
+      <input id="dogoBreed" type="text" name="breed" placeholder="Dogo Breed"/>
       <input type="hidden" name="_csrf" value={this.props.csrf}/>
       <input className=" makeDogoSubmit" type="submit" value="Make Dogo" />
 
@@ -55,7 +56,7 @@ const renderDogoList = function() {
       <div key={dogo._id} className="dogo">
         <img src="/assets/img/dogoface.jpeg" alt="dogo face" className="dogoFace" />
         <h3 className="dogoName"> Name: {dogo.name} </h3>
-        <h3 className="dogoAge"> Age: {dogo.age} </h3>
+        <h3 className="dogoBreed"> Breed: {dogo.breed} </h3>
       </div>
     )
   });

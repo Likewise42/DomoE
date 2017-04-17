@@ -15,9 +15,9 @@ const DogoSchema = new mongoose.Schema({
     set: setName,
   },
 
-  age: {
-    type: Number,
-    min: 0,
+  breed: {
+    type: String,
+    trim: true,
     required: true,
   },
 
@@ -35,7 +35,7 @@ const DogoSchema = new mongoose.Schema({
 
 DogoSchema.statics.toAPI = (doc) => ({
   name: doc.name,
-  age: doc.age,
+  breed: doc.breed,
 });
 
 DogoSchema.statics.findByOwner = (ownerId, callback) => {
@@ -43,7 +43,7 @@ DogoSchema.statics.findByOwner = (ownerId, callback) => {
     owner: convertId(ownerId),
   };
 
-  return DogoModel.find(search).select('name age').exec(callback);
+  return DogoModel.find(search).select('name breed').exec(callback);
 };
 
 DogoModel = mongoose.model('Dogo', DogoSchema);

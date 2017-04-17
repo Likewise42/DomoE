@@ -10,7 +10,7 @@ var handleDogo = function handleDogo(e) {
 
   $("dogoMessage").animate({ width: 'hide' }, 350);
 
-  if ($("dogoName").val() == '' || $("dogoAge").val() == '' || $("dogoPower").val() == '') {
+  if ($("dogoName").val() == '' || $("dogoBreed").val() == '') {
     handleError("Bork! all fields required");
     return false;
   }
@@ -40,10 +40,10 @@ var renderDogo = function renderDogo() {
     React.createElement("input", { id: "dogoName", type: "text", name: "name", placeholder: "Dogo Name" }),
     React.createElement(
       "label",
-      { htmlFor: "age" },
-      " Age: "
+      { htmlFor: "breed" },
+      " Breed: "
     ),
-    React.createElement("input", { id: "dogoAge", type: "text", name: "age", placeholder: "Dogo Age" }),
+    React.createElement("input", { id: "dogoBreed", type: "text", name: "breed", placeholder: "Dogo Breed" }),
     React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
     React.createElement("input", { className: " makeDogoSubmit", type: "submit", value: "Make Dogo" })
   );
@@ -76,9 +76,9 @@ var renderDogoList = function renderDogoList() {
       ),
       React.createElement(
         "h3",
-        { className: "dogoAge" },
-        " Age: ",
-        dogo.age,
+        { className: "dogoBreed" },
+        " Breed: ",
+        dogo.breed,
         " "
       )
     );
