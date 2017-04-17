@@ -20,7 +20,7 @@ const DomoSchema = new mongoose.Schema({
     min: 0,
     required: true,
   },
-  
+
   power: {
     type: Number,
     min: 0,
