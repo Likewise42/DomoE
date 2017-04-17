@@ -91,7 +91,7 @@ var renderDogoList = function renderDogoList() {
   );
 };
 
-var setup = function setup(csrf) {
+var dogoSetup = function dogoSetup(csrf) {
   DogoFormClass = React.createClass({
     displayName: "DogoFormClass",
 
@@ -121,14 +121,14 @@ var setup = function setup(csrf) {
   dogoRenderer = ReactDOM.render(React.createElement(DogoListClass, null), document.querySelector("#dogos"));
 };
 
-var getToken = function getToken() {
+var dogoGetToken = function dogoGetToken() {
   sendAjax('GET', '/getToken', null, function (result) {
-    setup(result.csrfToken);
+    dogoSetup(result.csrfToken);
   });
 };
 
 $(document).ready(function () {
-  getToken();
+  dogoGetToken();
 });
 "use strict";
 
@@ -279,7 +279,15 @@ $(document).ready(function () {
 
 var handleError = function handleError(message) {
   $('#errorMessage').text(message);
-  $('#domoMessage').animate({ width: 'toggle' }, 350);
+  if ($('#domoMessage')) {
+    $('#domoMessage').animate({ width: 'toggle' }, 350);
+    console.log('domoHelp');
+  }
+
+  if ($('#dogoMessage')) {
+    $('#dogoMessage').animate({ width: 'toggle' }, 350);
+    console.log('dogoHelp');
+  }
 };
 
 var redirect = function redirect(response) {

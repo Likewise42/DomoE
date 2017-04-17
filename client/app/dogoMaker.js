@@ -67,7 +67,7 @@ const renderDogoList = function() {
   );
 };
 
-const setup = function(csrf) {
+const dogoSetup = function(csrf) {
   DogoFormClass = React.createClass({
     handleSubmit: handleDogo,
     render: renderDogo,
@@ -97,12 +97,12 @@ const setup = function(csrf) {
   );
 };
 
-const getToken = () =>{
+const dogoGetToken = () =>{
   sendAjax('GET', '/getToken', null, (result) => {
-    setup(result.csrfToken);
+    dogoSetup(result.csrfToken);
   });
 };
 
 $(document).ready(function(){
-  getToken();
+  dogoGetToken();
 });

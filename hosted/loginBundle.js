@@ -153,7 +153,15 @@ $(document).ready(function () {
 
 var handleError = function handleError(message) {
   $('#errorMessage').text(message);
-  $('#domoMessage').animate({ width: 'toggle' }, 350);
+  if ($('#domoMessage')) {
+    $('#domoMessage').animate({ width: 'toggle' }, 350);
+    console.log('domoHelp');
+  }
+
+  if ($('#dogoMessage')) {
+    $('#dogoMessage').animate({ width: 'toggle' }, 350);
+    console.log('dogoHelp');
+  }
 };
 
 var redirect = function redirect(response) {
