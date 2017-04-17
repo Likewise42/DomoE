@@ -10,7 +10,7 @@ var handleDomo = function handleDomo(e) {
 
 	$("domoMessage").animate({ width: 'hide' }, 350);
 
-	if ($("domoName").val() == '' || $("domoAge").val() == '') {
+	if ($("domoName").val() == '' || $("domoAge").val() == '' || $("domoPower").val() == '') {
 		handleError("Rawr! all fields required");
 		return false;
 	}
@@ -44,6 +44,12 @@ var renderDomo = function renderDomo() {
 			" Age: "
 		),
 		React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Domo Age" }),
+		React.createElement(
+			"label",
+			{ htmlFor: "power" },
+			" Power: "
+		),
+		React.createElement("input", { id: "domoPower", type: "text", name: "power", placeholder: "Domo Power" }),
 		React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
 		React.createElement("input", { className: " makeDomoSubmit", type: "submit", value: "Make Domo" })
 	);
@@ -79,6 +85,13 @@ var renderDomoList = function renderDomoList() {
 				{ className: "domoAge" },
 				" Age: ",
 				domo.age,
+				" "
+			),
+			React.createElement(
+				"h3",
+				{ className: "domoPower" },
+				" Power: ",
+				domo.power,
 				" "
 			)
 		);
